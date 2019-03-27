@@ -10,8 +10,8 @@ Go RESTful API Boilerplate with JWT Authentication backed by mySQL
 # Run Application
 - Clone this repository
 - Create a Mysql database and set environment variable DATABASE_URL accordingly if not using same as default
-- Build the application: go build to create go-base binary
-- Run the application: go-base serve
+- Build the application: go build to create go-roar binary
+- Run the application: go-roar serve
 
 ## Environment/Config Variables
 | Name | Data type | Description |Default |
