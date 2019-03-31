@@ -9,7 +9,6 @@ import (
 	"go-roar/logging"
 	"net/http"
 	"time"
-	"go-roar/api/controller"
 
 )
 
@@ -36,7 +35,7 @@ func New(enableCORS bool) (*chi.Mux, error) {
 	r.Get("/ping", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("pong"))
 	})
-	r.Get("/mun",controller.Municipality)
+
 
 
 
