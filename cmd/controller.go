@@ -1,8 +1,10 @@
 package cmd
 
 import (
+	"fmt"
 	"github.com/spf13/cobra"
 	"log"
+	"os"
 )
 
 // serveCmd represents the serve command
@@ -13,10 +15,42 @@ var createControllerCmd = &cobra.Command{
 	Long:  `Starts a http server and serves the configured api`,
 	Run: func(cmd *cobra.Command, args []string) {
 		getControllerName, _:= cmd.Flags().GetString("getControllerName")
+
+		fileName := fmt.Sprintf("./controller/"+getControllerName+".go")
+		isExist := Exists(fileName)
+		if isExist{
+			log.Printf("file %s exists", getControllerName)
+		}else {
+			file, err := os.Create(fileName)
+			if err != nil {
+				log.Printf("os.Create",err)
+				return
+			}
+			fmt.Fprintln(file, fmt.Sprintf("package "+getControllerName))
+			fmt.Fprintln(file, `import (
+			"net/http"
+
+			)`)
+			defer file.Close()
+		}
+
+
+
+
+
+
 		log.Printf("Create controller cmd init",getControllerName)
 	},
 }
-
+// Exists reports whether the named file or directory exists.
+func Exists(name string) bool {
+	if _, err := os.Stat(name); err != nil {
+		if os.IsNotExist(err) {
+			return false
+		}
+	}
+	return true
+}
 func init() {
 	RootCmd.AddCommand(createControllerCmd)
 
