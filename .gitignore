@@ -1,9 +1,10 @@
 .DS_STORE
 .vscode
 .realize.yaml
+.idea
 
 debug
-go-base
+go-roar
 
 # Binaries for programs and plugins
 *.exe

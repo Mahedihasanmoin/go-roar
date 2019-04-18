@@ -1,25 +1,27 @@
 package cmd
 
 import (
+
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"go-roar/api"
+	"go-roar/route"
 	"log"
+
 )
 
 // serveCmd represents the serve command
 var serveCmd = &cobra.Command{
 	Use:   "serve",
-	Short: "start http server with configured api",
-	Long:  `Starts a http server and serves the configured api`,
+	Short: "start http server with configured route",
+	Long:  `Starts a http server and serves the configured route`,
 	Run: func(cmd *cobra.Command, args []string) {
-		//api.Start()
-		server, err := api.NewServer()
+		//route.Start()
+		server, err := route.NewServer()
 		if err != nil {
 			log.Fatal(err)
 			//log.Printf("pi.NewServer() err %v\n", err)
-
 		}
+
 		server.Start()
 	},
 }

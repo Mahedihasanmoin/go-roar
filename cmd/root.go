@@ -44,7 +44,9 @@ func init() {
 	// will be global for your application.
 	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.go-roar.yaml)")
 
-	viper.SetDefault("database_url", "root:123456@tcp(127.0.0.1:3306)/parksmart?charset=utf8&parseTime=True&loc=Local")
+	//viper.SetDefault("database_url", "root:admin123@tcp(127.0.0.1:3306)/parksmart?charset=utf8&parseTime=True&loc=Local")
+	viper.SetDefault("database_url", "root:admin123@/parksmart?charset=utf8&parseTime=True&loc=Local")
+
 
 	RootCmd.PersistentFlags().Bool("db_debug", false, "log sql to console")
 	viper.BindPFlag("db_debug", RootCmd.PersistentFlags().Lookup("db_debug"))
