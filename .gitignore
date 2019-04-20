@@ -2,6 +2,7 @@
 .vscode
 .realize.yaml
 .idea
+.idea/workspace.xml
 
 debug
 go-roar

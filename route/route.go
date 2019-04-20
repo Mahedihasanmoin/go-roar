@@ -37,8 +37,8 @@ func New(enableCORS bool) (*chi.Mux, error) {
 		w.Write([]byte("pong"))
 	})
 
-	r.Get("/get_municipality", controller.GetMunicipality)
-	r.Get("/get_events", controller.GetEvents)
+	r.Get("/get-tv", controller.GetTvs)
+	r.Get("/get-slider", controller.GetSliders)
 
 	return r, nil
 }

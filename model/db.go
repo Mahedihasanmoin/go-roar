@@ -18,7 +18,7 @@ func DBConn() {
 
 	//connectionString := viper.GetString("database_url")
 	var err error
-	db, err = gorm.Open("mysql", "root:admin123@/parksmart?charset=utf8&parseTime=True&loc=Local")
+	db, err = gorm.Open("mysql", "root:1234@/robi?charset=utf8&parseTime=True&loc=Local")
 	//defer db.Close()
 
 	if err != nil {
@@ -27,7 +27,7 @@ func DBConn() {
 
 	log.Println("Connection Established")
 
-	db.AutoMigrate(&Client{}, &Event{})
+	//db.AutoMigrate(&Client{}, &Event{})
 }
 
 func init(){

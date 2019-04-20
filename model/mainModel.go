@@ -1,5 +1,9 @@
 package model
 
+import (
+	"time"
+	"github.com/jinzhu/gorm"
+	)
 // gorm.Model definition
 type Model struct {
 	ID        uint `gorm:"primary_key"`
