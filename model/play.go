@@ -17,6 +17,8 @@ type VideoPlayDatas struct {
 	PlayCount string `gorm:"column:play_count"`
 }
 
+
+
 func VideoPlayData(fileName string) []VideoPlayDatas {
 	log.Println("MODEL :: VideoPlay => start")
 

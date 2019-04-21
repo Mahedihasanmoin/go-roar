@@ -10,6 +10,7 @@ import (
 )
 
 
+
 func GetSliders(w http.ResponseWriter, r *http.Request) {
 	log.Println("GetMunicipality => start")
 

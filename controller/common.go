@@ -36,7 +36,7 @@ func AllVideos(w http.ResponseWriter, r *http.Request) {
 }
 
 func TopTrending(w http.ResponseWriter, r *http.Request) {
-	log.Println("VideoPlay => start")
+
 
 	all := chi.URLParam(r, "all")
 

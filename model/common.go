@@ -17,6 +17,8 @@ type VideoNewRelese struct {
 	PlayCount string `gorm:"column:play_count"`
 }
 
+
+
 func VideoNewReleaseHomePageSql() []VideoNewRelese {
 	log.Println("MODEL :: VideoPlay => start")
 

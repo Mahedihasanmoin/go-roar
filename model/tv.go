@@ -17,7 +17,6 @@ type Tv struct {
 	Category string    `gorm:"column:category"`
 	Type string    `gorm:"column:string"`
 	Status int    `gorm:"column:status"`
-
 }
 
 func GetTvList() []Tv{

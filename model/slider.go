@@ -19,6 +19,8 @@ type Slider struct {
 
 }
 
+
+
 func GetSlider() []Slider{
 	log.Println("MODEL :: GetSlider => start")
 
