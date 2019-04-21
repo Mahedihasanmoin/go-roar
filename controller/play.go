@@ -2,12 +2,11 @@
 package controller
 
 import (
-	"net/http"
-	"go-roar/model"
-	"go-roar/helper"
-	"log"
 	"github.com/go-chi/chi"
-
+	"go-roar/helper"
+	"go-roar/model"
+	"log"
+	"net/http"
 )
 
 func VideoPlay(w http.ResponseWriter, r *http.Request) {
@@ -22,7 +21,6 @@ func VideoPlay(w http.ResponseWriter, r *http.Request) {
 	helper.RespondwithJSON(w, result)
 }
 
-
 func VideoPlayRecommended(w http.ResponseWriter, r *http.Request) {
 	log.Println("VideoPlay => start")
 	catName := chi.URLParam(r, "cat")
@@ -34,4 +32,3 @@ func VideoPlayRecommended(w http.ResponseWriter, r *http.Request) {
 
 	helper.RespondwithJSON(w, result)
 }
-

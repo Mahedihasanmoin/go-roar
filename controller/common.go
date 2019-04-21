@@ -2,11 +2,11 @@
 package controller
 
 import (
-	"net/http"
-	"go-roar/model"
-	"go-roar/helper"
-	"log"
 	"github.com/go-chi/chi"
+	"go-roar/helper"
+	"go-roar/model"
+	"log"
+	"net/http"
 	"strconv"
 )
 
@@ -28,15 +28,12 @@ func AllVideos(w http.ResponseWriter, r *http.Request) {
 	limit, _ := strconv.ParseUint(chi.URLParam(r, "limit"), 10, 32)
 
 	var result []model.AllVideos
-	result = model.AllVideosSql(int(limit),int(offset))
+	result = model.AllVideosSql(int(limit), int(offset))
 
 	log.Println("result => ", result)
 
 	helper.RespondwithJSON(w, result)
 }
-
-
-
 
 func TopTrending(w http.ResponseWriter, r *http.Request) {
 	log.Println("VideoPlay => start")
@@ -47,7 +44,7 @@ func TopTrending(w http.ResponseWriter, r *http.Request) {
 	limit, _ := strconv.ParseUint(chi.URLParam(r, "limit"), 10, 32)
 
 	var result []model.AllVideos
-	result = model.MostPopularSql(int(limit),int(offset),all)
+	result = model.MostPopularSql(int(limit), int(offset), all)
 
 	log.Println("result => ", result)
 
