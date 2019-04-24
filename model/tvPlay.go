@@ -7,38 +7,39 @@ import (
 	"log"
 )
 
-type TvPlayDatas struct {
+type TvPlayData struct {
 	gorm.Model
-	Title     string `gorm:"column:title"`
-	Uuid      string `gorm:"column:uuid"`
-	FileName  string `gorm:"column:file_name"`
-	Desc      string `gorm:"column:desc"`
-	Cat       int `gorm:"column:cat"`
-	PlayCount string `gorm:"column:play_count"`
-	IsTv 	  int `gorm:"column:is_tv"`
+	Name     string `gorm:"column:name"`
+	url      string `gorm:"column:url"`
+	PlayUrl  string `gorm:"column:play_url"`
+	Logo      string `gorm:"column:logo"`
+	Category       int `gorm:"column:cattegory"`
+
 }
 
 
 
-func TvPlayData(fileName string) []VideoPlayDatas {
+func TvPlaySql(url string) []TvPlayData {
+	log.Println("MODEL :: VideoPlay => start")
+
+	var tvPlayData []TvPlayData
+	db.Table("tv").Select("*").Where("status = ?", 1).Where("url = ?", url).Scan(&tvPlayData)
+	return tvPlayData
+}
+
+func PopularOnTvSql() []VideoPlayDatas {
 	log.Println("MODEL :: VideoPlay => start")
 
 	var videoPlayDatas []VideoPlayDatas
-	db.Table("videos").Select("*").Where("status = ?", 1).Where("file_name = ?", fileName).Scan(&videoPlayDatas)
+	db.Table("videos").Select("*").
+		Where("status = ?", 1).
+		Where("privacy = ?", 1).
+		Where("is_tv = ?", 1).
+		Group("videos.id").
+		Having("count(*) <= 1").
+		Order("play_count DESC").
+		Order(gorm.Expr("rand()")).
+		Limit(12).
+		Scan(&videoPlayDatas)
 	return videoPlayDatas
 }
-
-//func VideoPlayRecommandedSql(catName int,nowPlayingFileName string) []VideoPlayDatas {
-//	log.Println("MODEL :: VideoPlay => start")
-//
-//	var videoPlayDatas []VideoPlayDatas
-//	db.Table("videos").Select("*").
-//		Where("status = ?", 1).
-//		Where("privacy = ?", 1).
-//		Where("cat = ?", catName).
-//		Where("fileName != ?", nowPlayingFileName).
-//		Order(gorm.Expr("rand()")).
-//		Limit(10).
-//		Scan(&videoPlayDatas)
-//	return videoPlayDatas
-//}

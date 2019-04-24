@@ -19,7 +19,7 @@ type Tv struct {
 	Status int    `gorm:"column:status"`
 }
 
-func GetTvList() []Tv{
+func GetTvListSql() []Tv{
 	log.Println("MODEL :: GetTvList => start")
 
 	var tv []Tv

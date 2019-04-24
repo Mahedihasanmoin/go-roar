@@ -10,7 +10,7 @@ import (
 )
 
 
-func GetTvs(w http.ResponseWriter, r *http.Request) {
+func GetTvList(w http.ResponseWriter, r *http.Request) {
 	log.Println("GetMunicipality => start")
 	//var result []model.Client
 
@@ -18,7 +18,7 @@ func GetTvs(w http.ResponseWriter, r *http.Request) {
 	//helper.RespondwithJSON(w, result)
 
 	var result []model.Tv
-	result = model.GetTvList()
+	result = model.GetTvListSql()
 
 	log.Println("result => ", result)
 

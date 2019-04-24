@@ -7,31 +7,29 @@ import (
 	"go-roar/model"
 	"log"
 	"net/http"
-	"strconv"
+
 )
 
 
 func TvPlay(w http.ResponseWriter, r *http.Request) {
 	log.Println("VideoPlay => start")
-	fileName := chi.URLParam(r, "fileName")
+	url := chi.URLParam(r, "url")
 
-	var result []model.VideoPlayDatas
-	result = model.VideoPlayData(fileName)
+	var result []model.TvPlayData
+	result = model.TvPlaySql(url)
 
 	log.Println("result => ", result)
 
 	helper.RespondwithJSON(w, result)
 }
 
-//func VideoPlayRecommended(w http.ResponseWriter, r *http.Request) {
-//	log.Println("VideoPlay => start")
-//	cat, _ := strconv.ParseUint(chi.URLParam(r, "cat"), 10, 32)
-//	nowPlayingFileName := chi.URLParam(r, "nowPlayingFileName")
-//
-//	var result []model.VideoPlayDatas
-//	result = model.VideoPlayRecommandedSql(int(cat),nowPlayingFileName)
-//
-//	log.Println("result => ", result)
-//
-//	helper.RespondwithJSON(w, result)
-//}
+func PopularOnTv(w http.ResponseWriter, r *http.Request) {
+	log.Println("VideoPlay => start")
+
+	var result []model.VideoPlayDatas
+	result = model.PopularOnTvSql()
+
+	log.Println("result => ", result)
+
+	helper.RespondwithJSON(w, result)
+}
