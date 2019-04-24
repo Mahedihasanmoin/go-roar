@@ -13,8 +13,9 @@ type VideoNewRelese struct {
 	Uuid      string `gorm:"column:uuid"`
 	FileName  string `gorm:"column:file_name"`
 	Desc      string `gorm:"column:desc"`
-	Cat       string `gorm:"column:cat"`
-	PlayCount string `gorm:"column:play_count"`
+	Cat       int `gorm:"column:cat"`
+	PlayCount int `gorm:"column:play_count"`
+	IsTv 	  int `gorm:"column:is_tv"`
 }
 
 
@@ -33,8 +34,9 @@ type AllVideos struct {
 	Uuid      string `gorm:"column:uuid"`
 	FileName  string `gorm:"column:file_name"`
 	Desc      string `gorm:"column:desc"`
-	Cat       string `gorm:"column:cat"`
-	PlayCount string `gorm:"column:play_count"`
+	Cat       int `gorm:"column:cat"`
+	PlayCount int `gorm:"column:play_count"`
+	IsTv 	  int `gorm:"column:is_tv"`
 }
 
 func AllVideosSql(limit, offset int) []AllVideos {
@@ -50,9 +52,28 @@ func TopTrendingSql(limit, offset int, all string) []AllVideos {
 
 	var allVideos []AllVideos
 	if limit > 0 && all != "" {
-		db.Table("videos").Select("*").Where("status = ?", 1).Where("privacy = ?", 1).Order(gorm.Expr("rand()")).Limit(limit).Offset(offset).Scan(&allVideos)
+
+		log.Println("MODEL :: TopTrendingSql => if")
+		db.Table("videos").Select("*").
+			Where("status = ?", 1).
+			Where("privacy = ?", 1).
+			Group("videos.id").
+			Having("count(*) <= 1").
+			Order("play_count DESC").
+			Limit(limit).
+			Offset(offset).
+			Scan(&allVideos)
 	} else {
-		db.Table("videos").Select("*").Where("status = ?", 1).Where("privacy = ?", 1).Order(gorm.Expr("rand()")).Limit(limit).Scan(&allVideos)
+		log.Println("MODEL :: TopTrendingSql => else")
+
+		db.Table("videos").Select("*").
+			Where("status = ?", 1).
+			Where("privacy = ?", 1).
+			Group("id").
+			Having("count(*) <= 1").
+			Order("play_count DESC").
+			Limit(10).
+			Scan(&allVideos)
 	}
 
 	return allVideos

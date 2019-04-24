@@ -37,11 +37,12 @@ func New(enableCORS bool) (*chi.Mux, error) {
 		w.Write([]byte("pong"))
 	})
 
+	r.Get("/top-trending/{limit}/{offset}/{all}", controller.TopTrending)
 	r.Get("/all-videos/{limit}/{offset}", controller.AllVideos)
 	r.Get("/get-tv", controller.GetTvs)
 	r.Get("/get-slider", controller.GetSliders)
 	r.Get("/video-play/{fileName}", controller.VideoPlay)
-	r.Get("/video-play-re/{cat}", controller.VideoPlayRecommended)
+	r.Get("/video-play-re/{cat}/{nowPlayingFileName}", controller.VideoPlayRecommended)
 	r.Get("/video-home-nr", controller.NewReleaseHomePage)
 
 	return r, nil

@@ -39,14 +39,13 @@ func TopTrending(w http.ResponseWriter, r *http.Request) {
 
 
 	all := chi.URLParam(r, "all")
-
 	offset, _ := strconv.ParseUint(chi.URLParam(r, "offset"), 10, 32)
 	limit, _ := strconv.ParseUint(chi.URLParam(r, "limit"), 10, 32)
 
 	var result []model.AllVideos
-	result = model.MostPopularSql(int(limit), int(offset), all)
+	result = model.TopTrendingSql(int(limit), int(offset), all)
 
-	log.Println("result => ", result)
+	//log.Println("result => ", result)
 
 	helper.RespondwithJSON(w, result)
 }

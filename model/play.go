@@ -13,8 +13,9 @@ type VideoPlayDatas struct {
 	Uuid      string `gorm:"column:uuid"`
 	FileName  string `gorm:"column:file_name"`
 	Desc      string `gorm:"column:desc"`
-	Cat       string `gorm:"column:cat"`
+	Cat       int `gorm:"column:cat"`
 	PlayCount string `gorm:"column:play_count"`
+	IsTv 	  int `gorm:"column:is_tv"`
 }
 
 
@@ -27,10 +28,17 @@ func VideoPlayData(fileName string) []VideoPlayDatas {
 	return videoPlayDatas
 }
 
-func VideoPlayRecommandedSql(catName string) []VideoPlayDatas {
+func VideoPlayRecommandedSql(catName int,nowPlayingFileName string) []VideoPlayDatas {
 	log.Println("MODEL :: VideoPlay => start")
 
 	var videoPlayDatas []VideoPlayDatas
-	db.Table("videos").Select("*").Where("status = ?", 1).Where("privacy = ?", 1).Where("cat = ?", catName).Order(gorm.Expr("rand()")).Limit(10).Scan(&videoPlayDatas)
+	db.Table("videos").Select("*").
+		Where("status = ?", 1).
+		Where("privacy = ?", 1).
+		Where("cat = ?", catName).
+		Where("fileName != ?", nowPlayingFileName).
+		Order(gorm.Expr("rand()")).
+		Limit(10).
+		Scan(&videoPlayDatas)
 	return videoPlayDatas
 }

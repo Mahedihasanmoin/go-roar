@@ -7,6 +7,7 @@ import (
 	"go-roar/model"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 
@@ -24,10 +25,11 @@ func VideoPlay(w http.ResponseWriter, r *http.Request) {
 
 func VideoPlayRecommended(w http.ResponseWriter, r *http.Request) {
 	log.Println("VideoPlay => start")
-	catName := chi.URLParam(r, "cat")
+	cat, _ := strconv.ParseUint(chi.URLParam(r, "cat"), 10, 32)
+	nowPlayingFileName := chi.URLParam(r, "nowPlayingFileName")
 
 	var result []model.VideoPlayDatas
-	result = model.VideoPlayRecommandedSql(catName)
+	result = model.VideoPlayRecommandedSql(int(cat),nowPlayingFileName)
 
 	log.Println("result => ", result)
 
