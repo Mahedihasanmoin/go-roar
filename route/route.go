@@ -37,22 +37,29 @@ func New(enableCORS bool) (*chi.Mux, error) {
 		w.Write([]byte("pong"))
 	})
 
-	r.Get("/top-trending/{limit}/{offset}/{all}", controller.TopTrending)
-	r.Get("/all-videos/{limit}/{offset}", controller.AllVideos)
-	r.Get("/get-tv", controller.GetTvList)
 
-	r.Get("/get-slider", controller.GetSliders)
-	r.Get("/video-play/{fileName}", controller.VideoPlay)
+	r.Post("/user/store", controller.StoreUser)
+	r.Get("/user/getall", controller.GetAllUser)
+	r.Get("/user/get/{id}", controller.GetUser)
+	r.Post("/user/del/{id}", controller.DelUser)
+	r.Post("/user/edit", controller.EditUser)
 
-	r.Get("/video-play-re/{cat}/{nowPlayingFileName}", controller.VideoPlayRecommended)
-	r.Get("/video-home-nr", controller.NewReleaseHomePage)
-
-	r.Get("/tv-play/{url}", controller.TvPlay)
-	r.Get("/popularon-tv", controller.PopularOnTv)
-
-
-	r.Get("/vod-cat/{limit}/{offset}", controller.VideoCat)
-	r.Get("/catwise-vod/{cat}", controller.CatWiseVideo)
+	//r.Get("/top-trending/{limit}/{offset}/{all}", controller.TopTrending)
+	//r.Get("/all-videos/{limit}/{offset}", controller.AllVideos)
+	//r.Get("/get-tv", controller.GetTvList)
+	//
+	//r.Get("/get-slider", controller.GetSliders)
+	//r.Get("/video-play/{fileName}", controller.VideoPlay)
+	//
+	//r.Get("/video-play-re/{cat}/{nowPlayingFileName}", controller.VideoPlayRecommended)
+	//r.Get("/video-home-nr", controller.NewReleaseHomePage)
+	//
+	//r.Get("/tv-play/{url}", controller.TvPlay)
+	//r.Get("/popularon-tv", controller.PopularOnTv)
+	//
+	//
+	//r.Get("/vod-cat/{limit}/{offset}", controller.VideoCat)
+	//r.Get("/catwise-vod/{cat}", controller.CatWiseVideo)
 
 	return r, nil
 }
