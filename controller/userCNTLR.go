@@ -10,11 +10,7 @@ import (
 	"strconv"
 	"github.com/go-chi/chi"
 )
-type Animal struct {
-	ID   int64
-	Name string `gorm:"default:'galeone'"`
-	Age  int64
-}
+
 func StoreUser(w http.ResponseWriter, r *http.Request) {
 	log.Println("StoreUser => start")
 	var saveUserData = model.User{}
@@ -32,12 +28,11 @@ func StoreUser(w http.ResponseWriter, r *http.Request) {
 
 func GetAllUser(w http.ResponseWriter, r *http.Request) {
 	log.Println("GetAllUser => start")
+	offset,_ := strconv.ParseUint(chi.URLParam(r, "offset"), 10, 32)
+	limit,_ := strconv.ParseUint(chi.URLParam(r, "lomit"), 10, 32)
 
-
-
-	user := model.GetAllUser()
-
-	log.Println("result => ", user)
+	user := model.GetAllUser(w,int(offset),int(limit))
+	//log.Println("result => ", user)
 
 	helper.RespondwithJSON(w, user)
 }

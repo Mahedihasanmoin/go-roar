@@ -39,7 +39,7 @@ func New(enableCORS bool) (*chi.Mux, error) {
 
 
 	r.Post("/user/store", controller.StoreUser)
-	r.Get("/user/getall", controller.GetAllUser)
+	r.Get("/user/getall/{offset}/{limit}", controller.GetAllUser)
 	r.Get("/user/get/{id}", controller.GetUser)
 	r.Post("/user/del/{id}", controller.DelUser)
 	r.Post("/user/edit", controller.EditUser)

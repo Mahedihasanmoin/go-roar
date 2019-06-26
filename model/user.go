@@ -8,29 +8,7 @@ import (
 
 	//"go-roar/helper"
 	"net/http"
-	"time"
 )
-
-type User2 struct {
-	id				int			`gorm:"column:id"`
-	first_name 		string    	`gorm:"column:first_name"`
-	last_name  		string    	`gorm:"column:last_name"`
-	email 			string    	`gorm:"column:email"`
-	phone 			string    	`gorm:"column:phone"`
-	dob 			string    	`gorm:"column:dob"`
-	city 			string    	`gorm:"column:city"`
-	country 		string    	`gorm:"column:country"`
-	fax 			string    	`gorm:"column:fax"`
-	password 		string    	`gorm:"column:password"`
-	status 			string    	`gorm:"column:status"`
-	user_level 		int    		`gorm:"column:user_level"`
-	date_created 	time.Time   `gorm:"column:date_created"`
-	created_by 		int    		`gorm:"column:created_by"`
-	last_updated 	time.Time   `gorm:"column:last_updated"`
-	updated_by 		int   		`gorm:"column:updated_by"`
-
-
-}
 
 type User struct {
 	Id        uint `gorm:"primary_key"`
@@ -64,18 +42,28 @@ func StoreUser(w http.ResponseWriter,user User )  int{
 	return int(insert)
 }
 
-
-func GetAllUser() []User{
+type FullResponseData struct {
+	Data     []User
+	TotalRows int
+}
+func GetAllUser(w http.ResponseWriter,offset int,limit int) FullResponseData{
 	log.Println("MODEL :: GetAllUser => start")
 
 	var user []User
+	var totalData = 0
 	db.Table("user").
 		Select("*").
 		Where("status = ?", 1).
-		Limit(10).
+		Offset(offset).
+		Limit(limit).
+		Count(&totalData).
 		Scan(&user)
-	//defer db.Close()
-	return user
+	defer db.Close()
+
+	var res FullResponseData
+	res.TotalRows = totalData
+	res.Data = user
+	return res
 }
 
 
