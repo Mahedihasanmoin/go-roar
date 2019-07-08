@@ -5,6 +5,7 @@ require (
 	github.com/fatih/color v1.7.0 // indirect
 	github.com/go-chi/chi v4.0.0+incompatible
 	github.com/go-chi/cors v1.0.0
+	github.com/go-chi/docgen v1.0.5
 	github.com/go-chi/jwtauth v3.3.0+incompatible
 	github.com/go-chi/render v1.0.1
 	github.com/go-pg/pg v8.0.4+incompatible

@@ -13,10 +13,10 @@ import (
 
 func GetAllSetting(w http.ResponseWriter, r *http.Request) {
 	log.Println("GetAllUser => start")
-	user := model.GetAllUser(w)
+	//user := model.GetAllUser()
 	//log.Println("result => ", user)
 
-	helper.RespondwithJSON(w, user)
+	//helper.RespondwithJSON(w, user)
 }
 
 

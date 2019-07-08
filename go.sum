@@ -29,6 +29,8 @@ github.com/go-chi/cors v1.0.0 h1:e6x8k7uWbUwYs+aXDoiUzeQFT6l0cygBYyNhD7/1Tg0=
 github.com/go-chi/cors v1.0.0/go.mod h1:K2Yje0VW/SJzxiyMYu6iPQYa7hMjQX2i/F491VChg1I=
 github.com/go-chi/docgen v1.0.2 h1:BL7Y/SQlZMlhEI8dgukaEvF0AqdqG7axNdJsUVAzbRE=
 github.com/go-chi/docgen v1.0.2/go.mod h1:n7Wqcp0XCeIb/IHrd6hxqtFJzCklt0pKeo7uVUXkrdY=
+github.com/go-chi/docgen v1.0.5 h1:TiGvJAuVPZJ9zFSwoF52eORe0SztOYqf9C79LVw/xbY=
+github.com/go-chi/docgen v1.0.5/go.mod h1:Nm4H4RaynSlvTexxWYWwXBzrwZKRE00MrkIIcJelhWM=
 github.com/go-chi/jwtauth v3.3.0+incompatible h1:BEOEx6OueP61EfhuOTDqgroY0SYdcFsFsbY/n4f5+Kk=
 github.com/go-chi/jwtauth v3.3.0+incompatible/go.mod h1:Q5EIArY/QnD6BdS+IyDw7B2m6iNbnPxtfd6/BcmtWbs=
 github.com/go-chi/render v1.0.1 h1:4/5tis2cKaNdnv9zFLfXzcquC9HbeZgCnxGnKrltBS8=
@@ -160,6 +162,7 @@ golang.org/x/net v0.0.0-20180906233101-161cd47e91fd h1:nTDtHvHSdCn1m6ITfMRqtOd/9
 golang.org/x/net v0.0.0-20180906233101-161cd47e91fd/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
 golang.org/x/net v0.0.0-20181011144130-49bb7cea24b1 h1:Y/KGZSOdz/2r0WJ9Mkmz6NJBusp0kiNx1Cn82lzJQ6w=
 golang.org/x/net v0.0.0-20181011144130-49bb7cea24b1/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
+golang.org/x/net v0.0.0-20190110200230-915654e7eabc/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
 golang.org/x/net v0.0.0-20190327214358-63eda1eb0650 h1:XCbwcsP09zrBt1aYht0fASw+ynbEpYr8NnCkIN9nMM0=
 golang.org/x/net v0.0.0-20190327214358-63eda1eb0650/go.mod h1:t9HGtf8HONx5eT2rtn7q6eTqICYqUVnKs3thJo3Qplg=
 golang.org/x/sync v0.0.0-20180314180146-1d60e4601c6f h1:wMNYb4v58l5UBM7MYRLPG6ZhfOqbKu7X5eyFl8ZhKvA=
