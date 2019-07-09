@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cea72ca6-6098-49b8-886d-16c837608963" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cmd/gendoc.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/helper/core/controller.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/helper/core/model.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/settingCNTLR.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/settingCNTLR.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/model.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/model.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go-roar" beforeDir="false" afterPath="$PROJECT_DIR$/go-roar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,12 +30,13 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/cmd" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/helper/core" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/helper/core" />
       <recent name="$PROJECT_DIR$/cmd" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/controller" />
