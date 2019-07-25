@@ -12,20 +12,29 @@ import (
 
 
 type GlobalSettings struct {
-	Id        uint `gorm:"primary_key"`
-	FirstName 		string
-	LastName  		string
-	Email 			string
-	Phone 			string
-	Dob 			string
-	City 			string
-	Country 		string
-	Fax 			string
-	Password 		string
-	Status 			string
-	UserLevel 		int
-	CreatedBy 		int
-	UpdatedBy 		int
+	AppIsOnl 		bool `json:"appIsOnl"`
+	DtCreation string `gorm:"column:dtCreation"`
+	DtModification string `gorm:"column:dtModification"`
+	BlnOnOff int `gorm:"column:blnOnOff"`
+	ImagePath string `gorm:"column:ImagePath"`
+	TxtOfflineMsg string `gorm:"column:txtOfflineMsg"`
+	IntLogVerbosity int `gorm:"column:intLogVerbosity"`
+	IntDebugFlag int `gorm:"column:intDebugFlag"`
+	StrSmtp string `gorm:"column:strSmtp"`
+	StrTerminalIDDevelopment string `gorm:"column:strTerminalIDDevelopment"`
+	TxtJumpTitleEn string `gorm:"column:txtJumpTitle_en"`
+	TxtJumpTitleFr string `gorm:"column:txtJumpTitle_fr"`
+	StrPurgeLog string `gorm:"column:strPurgeLog"`
+	TxtCookiesMsg string `gorm:"column:txtCookiesMsg"`
+	StrFromEmailName string `gorm:"column:strFromEmailName"`
+	StrFromEmail string `gorm:"column:strFromEmail"`
+	StrFromSubject string `gorm:"column:strFromSubject"`
+	TxtFromBody string `gorm:"column:TxtFromBody"`
+	TxtCookiesMsgFr string `gorm:"column:txtCookiesMsg_fr"`
+	TxtOfflineMsgFr string `gorm:"column:txtOfflineMsg_fr"`
+	TxtJavascriptError  string `gorm:"column:txtJavascriptError"`
+	TxtJavascriptErrorFr string `gorm:"column:txtJavascriptError_fr"`
+
 	gorm.Model
 
 }
@@ -38,31 +47,17 @@ func (GlobalSettings) TableName() string {
 
 
 
-//func GetAllSetting(w http.ResponseWriter) {
-//	log.Println("MODEL :: GetAllUser => start")
-//
-//	var user []User
-//	var totalData = 0
-//	db.Table("user").
-//		Select("*").
-//		Where("status = ?", 1).
-//		Offset(0).
-//		Limit(10).
-//		Count(&totalData).
-//		Scan(&user)
-//	defer db.Close()
-//	return
-//
-//
-//}
+func GetAllSetting(w http.ResponseWriter) GlobalSettings{
+	log.Println("MODEL :: GetAllUser => start")
+
+	var setting = GlobalSettings{}
+	setting.AppIsOnl = true
+
+	db.Table("global_settings").
+		Select("*").
+		Scan(&setting)
+	defer db.Close()
+	return setting
 
 
-
-
-func EditSetting(w http.ResponseWriter,editData User) int{
-	log.Println("MODEL :: DelUser => start")
-	var user []User
-	db.SingularTable(true)
-	edit := db.Debug().Model(&user).Where("id = ?",editData.Id).Update(&editData).RowsAffected
-	return int(edit)
 }

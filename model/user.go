@@ -7,6 +7,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"log"
 	"reflect"
+	//"strconv"
 
 	//"go-roar/helper"
 	"net/http"
@@ -64,25 +65,30 @@ func GetAllUser(w http.ResponseWriter, a interface{}) FullResponseData{
 	sort := fmt.Sprintf("id %s", v.FieldByName("SortBy"))
 	offset :=  fmt.Sprintf("%d", v.FieldByName("Offset"))
 	limit :=  fmt.Sprintf("%d", v.FieldByName("Limit"))
-	status :=  fmt.Sprintf("%d", v.FieldByName("Status"))
+
+	status :=  fmt.Sprintf("status = %d", v.FieldByName("Status"))
+
 
 	var user []User
 	var totalData = 0
 	db.Table("user").
 		Select("*").
-		Where("status = ?", int(status)).
+		Where(status).
 		Order(sort).
-		Offset(offset).
 		Limit(limit).
-		Count(&totalData).
-		Scan(&user)
-	defer db.Close()
+		Offset(offset).
+		Find(&user)
+
+// count all data
+	db.Table("user").
+		Select("*").
+		Where(status).Count(&totalData)
+
 
 	var res FullResponseData
 	res.TotalRows = totalData
 	res.Data = user
 	return res
-	//helper.RespondwithJSON(w, res)
 }
 
 

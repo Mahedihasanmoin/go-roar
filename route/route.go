@@ -42,25 +42,12 @@ func New(enableCORS bool) (*chi.Mux, error) {
 	r.Get("/user/getall/{offset}/{limit}", controller.GetAllUser)
 	r.Get("/user/userinfo/{id}", controller.GetUser)
 	r.Get("/user/alluserinfo", controller.GetAllUser)
+	r.Get("/user/alluserinfo/fliter_by", controller.GetAllUserClient)
+
 	r.Post("/user/delete/{id}", controller.DelUser)
 	r.Put("/user/update", controller.EditUser)
 
-	//r.Get("/top-trending/{limit}/{offset}/{all}", controller.TopTrending)
-	//r.Get("/all-videos/{limit}/{offset}", controller.AllVideos)
-	//r.Get("/get-tv", controller.GetTvList)
-	//
-	//r.Get("/get-slider", controller.GetSliders)
-	//r.Get("/video-play/{fileName}", controller.VideoPlay)
-	//
-	//r.Get("/video-play-re/{cat}/{nowPlayingFileName}", controller.VideoPlayRecommended)
-	//r.Get("/video-home-nr", controller.NewReleaseHomePage)
-	//
-	//r.Get("/tv-play/{url}", controller.TvPlay)
-	//r.Get("/popularon-tv", controller.PopularOnTv)
-	//
-	//
-	//r.Get("/vod-cat/{limit}/{offset}", controller.VideoCat)
-	//r.Get("/catwise-vod/{cat}", controller.CatWiseVideo)
+	r.Get("/globalsettings", controller.GetAllSetting)
 
 	return r, nil
 }
