@@ -38,11 +38,12 @@ func New(enableCORS bool) (*chi.Mux, error) {
 	})
 
 
-	r.Post("/user/store", controller.StoreUser)
+	r.Post("/user/create", controller.StoreUser)
 	r.Get("/user/getall/{offset}/{limit}", controller.GetAllUser)
-	r.Get("/user/get/{id}", controller.GetUser)
-	r.Post("/user/del/{id}", controller.DelUser)
-	r.Post("/user/edit", controller.EditUser)
+	r.Get("/user/userinfo/{id}", controller.GetUser)
+	r.Get("/user/alluserinfo", controller.GetAllUser)
+	r.Post("/user/delete/{id}", controller.DelUser)
+	r.Put("/user/update", controller.EditUser)
 
 	//r.Get("/top-trending/{limit}/{offset}/{all}", controller.TopTrending)
 	//r.Get("/all-videos/{limit}/{offset}", controller.AllVideos)

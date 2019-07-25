@@ -26,13 +26,22 @@ func StoreUser(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+
+
+
 func GetAllUser(w http.ResponseWriter, r *http.Request) {
 	log.Println("GetAllUser => start")
-	offset,_ := strconv.ParseUint(chi.URLParam(r, "offset"), 10, 32)
-	limit,_ := strconv.ParseUint(chi.URLParam(r, "lomit"), 10, 32)
 
-	user := model.GetAllUser(w,int(offset),int(limit))
-	//log.Println("result => ", user)
+	var filter = model.UserAllInfo{}
+	err := json.NewDecoder(r.Body).Decode(&filter)
+
+	if err != nil {
+		log.Println("StoreUser decoder error v%", err)
+	}
+
+
+	user := model.GetAllUser(w,filter)
+	log.Println("result => ", user)
 
 	helper.RespondwithJSON(w, user)
 }
@@ -55,10 +64,10 @@ func DelUser(w http.ResponseWriter, r *http.Request){
 	log.Println("CNTRL :: DelUser => start")
 	id,_ := strconv.ParseUint(chi.URLParam(r, "id"), 10, 32)
 
-	 model.DelUser(w,int(id))
-
-
-	helper.RespondwithJSON(w, "1")
+	del :=  model.DelUser(w,int(id))
+	if del ==1  {
+		helper.JsonResponse(map[string]string{"message": "Successfull."}, w)
+	}
 }
 
 

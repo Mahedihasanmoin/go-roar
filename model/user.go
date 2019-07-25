@@ -1,17 +1,19 @@
 package model
 
 import (
+	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"log"
+	"reflect"
 
 	//"go-roar/helper"
 	"net/http"
 )
 
 type User struct {
-	Id        uint `gorm:"primary_key"`
+	Id       	    int `gorm:"primary_key";"AUTO_INCREMENT"`
 	FirstName 		string
 	LastName  		string
 	Email 			string
@@ -42,18 +44,34 @@ func StoreUser(w http.ResponseWriter,user User )  int{
 	return int(insert)
 }
 
+
+type UserAllInfo struct {
+	SortBy 			string
+	Offset 			int
+	Limit 			int
+	Status 		 	int
+
+}
 type FullResponseData struct {
 	Data     []User
 	TotalRows int
 }
-func GetAllUser(w http.ResponseWriter,offset int,limit int) FullResponseData{
+func GetAllUser(w http.ResponseWriter, a interface{}) FullResponseData{
 	log.Println("MODEL :: GetAllUser => start")
+	v := reflect.ValueOf(a)
+	v.NumField()
+
+	sort := fmt.Sprintf("id %s", v.FieldByName("SortBy"))
+	offset :=  fmt.Sprintf("%d", v.FieldByName("Offset"))
+	limit :=  fmt.Sprintf("%d", v.FieldByName("Limit"))
+	status :=  fmt.Sprintf("%d", v.FieldByName("Status"))
 
 	var user []User
 	var totalData = 0
 	db.Table("user").
 		Select("*").
-		Where("status = ?", 1).
+		Where("status = ?", int(status)).
+		Order(sort).
 		Offset(offset).
 		Limit(limit).
 		Count(&totalData).
@@ -64,6 +82,7 @@ func GetAllUser(w http.ResponseWriter,offset int,limit int) FullResponseData{
 	res.TotalRows = totalData
 	res.Data = user
 	return res
+	//helper.RespondwithJSON(w, res)
 }
 
 
@@ -77,11 +96,11 @@ func GetUser(w http.ResponseWriter,id int) []User{
 }
 
 
-func DelUser(w http.ResponseWriter,id int) {
+func DelUser(w http.ResponseWriter,id int) int{
 	log.Println("MODEL :: DelUser => start")
 	db.SingularTable(true)
-	db.Debug().Unscoped().Where("id = ?", id).Delete(&User{})
-
+	del := db.Debug().Unscoped().Where("id = ?", id).Delete(&User{}).RowsAffected
+	return int(del)
 }
 
 

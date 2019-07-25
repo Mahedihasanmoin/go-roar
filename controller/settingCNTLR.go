@@ -11,13 +11,13 @@ import (
 
 
 
-func GetAllSetting(w http.ResponseWriter, r *http.Request) {
-	log.Println("GetAllUser => start")
-	user := model.GetAllUser(w)
-	//log.Println("result => ", user)
-
-	helper.RespondwithJSON(w, user)
-}
+//func GetAllSetting(w http.ResponseWriter, r *http.Request) {
+//	log.Println("GetAllUser => start")
+//	user := model.GetAllSetting(w)
+//	//log.Println("result => ", user)
+//
+//	helper.RespondwithJSON(w, user)
+//}
 
 
 

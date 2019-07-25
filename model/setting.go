@@ -38,22 +38,23 @@ func (GlobalSettings) TableName() string {
 
 
 
-func GetAllSetting(w http.ResponseWriter) {
-	log.Println("MODEL :: GetAllUser => start")
-
-	var user []User
-	var totalData = 0
-	db.Table("user").
-		Select("*").
-		Where("status = ?", 1).
-		Offset(0).
-		Limit(10).
-		Count(&totalData).
-		Scan(&user)
-	defer db.Close()
-
-
-}
+//func GetAllSetting(w http.ResponseWriter) {
+//	log.Println("MODEL :: GetAllUser => start")
+//
+//	var user []User
+//	var totalData = 0
+//	db.Table("user").
+//		Select("*").
+//		Where("status = ?", 1).
+//		Offset(0).
+//		Limit(10).
+//		Count(&totalData).
+//		Scan(&user)
+//	defer db.Close()
+//	return
+//
+//
+//}
 
 
 
